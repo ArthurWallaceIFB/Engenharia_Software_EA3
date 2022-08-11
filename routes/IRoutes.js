@@ -4,6 +4,7 @@ class IRoutes {
    post() { }
    listen() { }
    put() { }
+   delete() { }
 }
 
 module.exports = IRoutes;

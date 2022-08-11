@@ -11,8 +11,6 @@ const app = express();
 
 const config = require('../config.js');
 
-let UserController = require('../controllers/' + config.IUserController);
-let userController = new UserController();
 
 let IngredienteController = require('../controllers/' + config.IIngredienteController);
 let ingredienteController = new IngredienteController();
@@ -20,6 +18,11 @@ let ingredienteController = new IngredienteController();
 let ClienteController = require('../controllers/' + config.IClienteController);
 let clienteController = new ClienteController();
 
+let ProdutoController = require('../controllers/' + config.IProdutoController);
+let produtoController = new ProdutoController();
+
+let PedidoController = require('../controllers/' + config.IPedidoController);
+let pedidoController = new PedidoController();
 
 class Routes extends IRoutes {
 
@@ -38,7 +41,6 @@ class Routes extends IRoutes {
     app.get('/', (req, res) => {
       res.send('Rest API com Polimorfismo');
     });
-    app.get('/user', userController.show);
 
     //Ingrediente
     app.get('/ingrediente/buscar', ingredienteController.buscarIngredientes);
@@ -47,18 +49,30 @@ class Routes extends IRoutes {
     //Cliente
     app.get('/cliente/buscar/:CPF', clienteController.buscarCliente);
 
+
+    //Produto
+    app.get('/produto/buscar', produtoController.buscarProdutos);
+
+
+    //Pedido
+    app.get('/pedido/buscar/:idPedido', pedidoController.buscarPedido);
+    app.get('/pedido/buscarPedidos/:CPFCliente', pedidoController.buscarPedidosCliente);
   }
   post() {
-    app.post('/user', userController.store);
-    // lista user
-
     //Cliente
     app.post('/cliente', clienteController.criarCliente);
+
+    //Cliente
+    app.post('/pedido', pedidoController.criarPedido);
   }
   put(){
     app.put('/cliente/:CPF', clienteController.atualizarCliente);
-  }
 
+    app.put('/pedido/:idPedido', pedidoController.atualizarPedido);
+  }
+  delete(){
+    app.delete('/pedido/:idPedido', pedidoController.deletarPedido);
+  }
   listen() {
     app.listen(3000, () => {
       console.log('server started on port 3000')

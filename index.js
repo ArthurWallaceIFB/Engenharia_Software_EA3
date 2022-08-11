@@ -5,4 +5,5 @@ let routes = new IRoutes();
 routes.get();
 routes.post();
 routes.put();
+routes.delete();
 routes.listen();
