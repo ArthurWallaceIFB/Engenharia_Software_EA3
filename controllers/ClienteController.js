@@ -1,7 +1,8 @@
 const IClienteController = require('./interfaces/IClienteController.js');
+const config = require('../config.js');
 
-const mongoose = require('mongoose');
-const Cliente = require('../models/Cliente');
+let ClienteDAO = require('../DAO/' + config.IClienteDAO);
+let clienteDAO = new ClienteDAO();
 
 class ClienteController extends IClienteController {
   constructor() {
@@ -10,18 +11,18 @@ class ClienteController extends IClienteController {
   }
   async buscarCliente(req, res) {
     
-    let cliente = await Cliente.findOne({ CPF: req.params.CPF });
+    let cliente = await clienteDAO.buscarCliente(req.params.CPF);
 
     return res.json(cliente);
 
   }
   async criarCliente(req, res) {
-    const cliente =  await Cliente.create(req.body);
+    const cliente =  await clienteDAO.criarCliente(req.body);
 
     return res.json(cliente);
   }
   async atualizarCliente(req, res) {
-    let cliente = await Cliente.findOneAndUpdate({ CPF: req.params.CPF }, req.body, {returnDocument: 'after'});
+    let cliente = await clienteDAO.atualizarCliente(req.params.CPF, req.body);
     return res.json(cliente);
   }
 }

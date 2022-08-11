@@ -1,7 +1,8 @@
 const IIngredienteController = require('./interfaces/IIngredienteController.js');
+const config = require('../config.js');
 
-const mongoose = require('mongoose');
-const Ingrediente = require('../models/Ingrediente');
+let IngredienteDAO = require('../DAO/' + config.IIngredienteDAO);
+let ingredienteDAO = new IngredienteDAO();
 
 class IngredienteController extends IIngredienteController{
   constructor(){
@@ -10,7 +11,7 @@ class IngredienteController extends IIngredienteController{
   }
   async buscarIngredientes(req, res)
     {
-        let ingredientes = await Ingrediente.find();
+        let ingredientes = await ingredienteDAO.buscarIngredientes();
         return res.json(ingredientes);
     }
 }
