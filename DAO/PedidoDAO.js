@@ -9,13 +9,13 @@ class PedidoDAO extends IPedidoDAO {
   }
 
   async buscarPedido(idPedido) {
-    let pedido = await Pedido.findOne({ codigo: idPedido });
+    let pedido = await Pedido.findOne({ codigo: idPedido }).populate('cliente produtos');
 
     return pedido;
   }
 
   async buscarPedidosCliente(CPF) {
-    let pedido = await Pedido.findOne({ CPF: CPF });
+    let pedido = await Pedido.find({ CPF: CPF }).populate('cliente produtos');
 
     return pedido;
   }
@@ -26,14 +26,16 @@ class PedidoDAO extends IPedidoDAO {
     return novoPedido;
   }
   
-  async atualizarPedido(CPF, pedido) {
-    let atualizadoPedido = await Pedido.findOneAndUpdate({ CPF: CPF }, pedido, { returnDocument: 'after' });
+  async atualizarPedido(idPedido, pedido) {
+    console.log("Aqui");
+    console.log(idPedido, pedido)
+    let atualizadoPedido = await Pedido.findOneAndUpdate({ codigo: idPedido }, pedido, { returnDocument: 'after' });
 
     return atualizadoPedido;
   }
 
-  async deletarPedido(pedido) {
-    let atualizadoPedido = await Pedido.findOneAndUpdate({ CPF: CPF }, pedido, { returnDocument: 'after' });
+  async deletarPedido(idPedido) {
+    let atualizadoPedido = await Pedido.deleteOne({ codigo: idPedido });
 
     return atualizadoPedido;
   }

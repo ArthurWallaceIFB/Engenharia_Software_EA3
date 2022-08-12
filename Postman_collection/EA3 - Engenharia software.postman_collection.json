@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "d7a3c8cf-6047-4747-abf4-d29267feaa18",
+		"name": "EA3 - Engenharia software",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Buscar ingredientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ingrediente/buscar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ingrediente",
+						"buscar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Produtos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/produto/buscar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"produto",
+						"buscar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Cliente por CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cliente/buscar/:{CPF}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cliente",
+						"buscar",
+						":{CPF}"
+					],
+					"variable": [
+						{
+							"key": "{CPF}",
+							"value": "13811944002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"teste2\",\n    \"CPF\": \"teste2@gmail.com\",\n    \"endereco\": {\n        \"CEP\": \"71918000\",\n        \"UF\": \"DF\",\n        \"cidade\": \"Brasília\",\n        \"bairro\": \"Águas Claras\",\n        \"logradouro\": \"rua tal\"\n    },\n    \"telefone\": {\n        \"numero\": \"956487456\",\n        \"ddd\": 61\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"teste2121\",\n    \"CPF\": \"13811944002\",\n    \"endereco\": {\n        \"CEP\": \"71918000\",\n        \"UF\": \"DF\",\n        \"cidade\": \"Brasília\",\n        \"bairro\": \"Águas Claras\",\n        \"logradouro\": \"rua tal\"\n    },\n    \"telefone\": {\n        \"numero\": \"956487456\",\n        \"ddd\": 61\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cliente/13811944002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cliente",
+						"13811944002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Pedido por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pedido/buscar/:{idPedido}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido",
+						"buscar",
+						":{idPedido}"
+					],
+					"variable": [
+						{
+							"key": "{idPedido}",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Pedido Cliente por CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pedido/buscarPedidos/:{CPFCliente}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido",
+						"buscarPedidos",
+						":{CPFCliente}"
+					],
+					"variable": [
+						{
+							"key": "{CPFCliente}",
+							"value": "13811944002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Pedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"codigo\": \"2\",\n    \"taxaEntrega\": 10,\n    \"desconto\": 3.2,\n    \"valorTotal\": 53.50,\n    \"formaPagamento\": \"débito\",\n    \"statusPedido\": \"finalizado\",\n    \"observacoes\": \"\",\n    \"CPFCliente\": \"13811944002\",\n    \"itensPedido\": [\"123456\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pedido",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Pedido",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"taxaEntrega\": 12,\n    \"desconto\": 3.2,\n    \"valorTotal\": 53.50,\n    \"formaPagamento\": \"crédito\",\n    \"statusPedido\": \"confirmado\",\n    \"observacoes\": \"sem cebola\",\n    \"CPFCliente\": \"13811944002\",\n    \"itensPedido\": [\"123456\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pedido/:{idPedido}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido",
+						":{idPedido}"
+					],
+					"variable": [
+						{
+							"key": "{idPedido}",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Pedido por Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pedido/:{idPedido}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pedido",
+						":{idPedido}"
+					],
+					"variable": [
+						{
+							"key": "{idPedido}",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
